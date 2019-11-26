@@ -181,7 +181,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>&#x2f;home&#x2f;robertorvs&#x2f;github&#x2f;datamart-vestibular-ufsc&#x2f;ETL&#x2f;relacao_candidatosVaga.xlsx</name>
+      <name>&#x2f;home&#x2f;robertorvs&#x2f;&#xc1;rea de Trabalho&#x2f;DW-TrabalhoFinal&#x2f;utils&#x2f;relacao_candidatosVaga.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -289,7 +289,7 @@
            <schema_name/>
            </partitioning>
     <connection>vestibular</connection>
-    <sql>SELECT id_curso, nome_curso&#xa;FROM curso&#xa;where id_curso &#x21;&#x3d;999&#xa;</sql>
+    <sql>SELECT id_curso, ANY_VALUE&#x28;nome_curso&#x29; as nome_curso&#xa;FROM vestibular.curso&#xa;where id_curso &#x21;&#x3d; 999&#xa;group by id_curso</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

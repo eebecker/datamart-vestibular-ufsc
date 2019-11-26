@@ -120,18 +120,18 @@
   <hop> <from>sort_dim_candidato</from><to>merge_dim_candidato</to><enabled>Y</enabled> </hop>
   <hop> <from>sort_candidato </from><to>merge_dim_candidato</to><enabled>Y</enabled> </hop>
   <hop> <from>input_dim_cidade</from><to>sort_dim_cidade</to><enabled>Y</enabled> </hop>
-  <hop> <from>sort_cidade2</from><to>merge_dim_cidade</to><enabled>Y</enabled> </hop>
+  <hop> <from>sort_cidade_candidato 2</from><to>merge_dim_cidade</to><enabled>Y</enabled> </hop>
   <hop> <from>sort_dim_cidade</from><to>merge_dim_cidade</to><enabled>Y</enabled> </hop>
   <hop> <from>input_dim_curso</from><to>sort_dim_curso</to><enabled>Y</enabled> </hop>
   <hop> <from>sort_dim_curso</from><to>merge_dim_curso</to><enabled>Y</enabled> </hop>
-  <hop> <from>sort_curso2</from><to>merge_dim_curso</to><enabled>Y</enabled> </hop>
+  <hop> <from>sort_curso_candidato 2</from><to>merge_dim_curso</to><enabled>Y</enabled> </hop>
   <hop> <from>merge_cidade_municipio</from><to>sort_candidato </to><enabled>Y</enabled> </hop>
-  <hop> <from>merge_dim_candidato</from><to>sort_cidade2</to><enabled>Y</enabled> </hop>
-  <hop> <from>merge_dim_cidade</from><to>sort_curso2</to><enabled>Y</enabled> </hop>
+  <hop> <from>merge_dim_candidato</from><to>sort_cidade_candidato 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>merge_dim_cidade</from><to>sort_curso_candidato 2</to><enabled>Y</enabled> </hop>
   <hop> <from>input_dim_evento</from><to>sort_dim_evento</to><enabled>Y</enabled> </hop>
-  <hop> <from>merge_dim_curso</from><to>sort_evento</to><enabled>Y</enabled> </hop>
+  <hop> <from>merge_dim_curso</from><to>sort_evento_candidato</to><enabled>Y</enabled> </hop>
   <hop> <from>sort_dim_evento</from><to>merge_dim_evento</to><enabled>Y</enabled> </hop>
-  <hop> <from>sort_evento</from><to>merge_dim_evento</to><enabled>Y</enabled> </hop>
+  <hop> <from>sort_evento_candidato</from><to>merge_dim_evento</to><enabled>Y</enabled> </hop>
   <hop> <from>merge_dim_evento</from><to>select_final_fato_candidato</to><enabled>Y</enabled> </hop>
   <hop> <from>js_id_curso</from><to>select_aprovado</to><enabled>Y</enabled> </hop>
   <hop> <from>select_aprovado</from><to>sort_curso_candidato</to><enabled>Y</enabled> </hop>
@@ -188,7 +188,7 @@
            <schema_name/>
            </partitioning>
     <connection>vestibular</connection>
-    <sql>SELECT id_candidato, id_opcao1, id_evento, cidade  FROM vestibular.boletim_desempenho&#xa;&#xa;</sql>
+    <sql>SELECT id_candidato, id_opcao1, id_evento, cidade  FROM vestibular.boletim_desempenho&#xa;WHERE unidade_federativa &#x3d; &#x27;SC&#x27;&#xa;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -240,7 +240,7 @@
            <schema_name/>
            </partitioning>
     <connection>vestibular</connection>
-    <sql>SELECT id_cidade, nome_municipio FROM vestibular.cidade&#xa;WHERE nome_municipio IN &#x28;select cidade&#xa;from vestibular.candidato&#xa;where unidade_federativa &#x3d; &#x27;SC&#x27;&#xa;group by cidade&#xa;having count&#x28;cidade&#x29; &#x3e; 350&#x29;</sql>
+    <sql>SELECT id_cidade, nome_municipio FROM vestibular.cidade&#xa;WHERE id_unidade_federativa &#x3d; &#x27;SC&#x27;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -266,7 +266,7 @@
            <schema_name/>
            </partitioning>
     <connection>vestibular</connection>
-    <sql>SELECT distinct&#x28;id_curso&#x29;, nome_curso FROM vestibular.curso&#xa;WHERE id_curso &#x21;&#x3d; 999</sql>
+    <sql>SELECT id_curso, ANY_VALUE&#x28;nome_curso&#x29; as nome_curso&#xa;FROM vestibular.curso&#xa;where id_curso &#x21;&#x3d; 999&#xa;group by id_curso</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -487,7 +487,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<join_type>INNER</join_type>
+<join_type>LEFT OUTER</join_type>
 <step1>sort_cidade_candidato</step1>
 <step2>sort_nome_municipio</step2>
     <keys_1>
@@ -543,8 +543,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<join_type>INNER</join_type>
-<step1>sort_cidade2</step1>
+<join_type>LEFT OUTER</join_type>
+<step1>sort_cidade_candidato 2</step1>
 <step2>sort_dim_cidade</step2>
     <keys_1>
       <key>id_cidade</key>
@@ -572,7 +572,7 @@
            <schema_name/>
            </partitioning>
 <join_type>LEFT OUTER</join_type>
-<step1>sort_curso2</step1>
+<step1>sort_curso_candidato 2</step1>
 <step2>sort_dim_curso</step2>
     <keys_1>
       <key>id_curso</key>
@@ -582,8 +582,8 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>496</xloc>
-      <yloc>628</yloc>
+      <xloc>522</xloc>
+      <yloc>627</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -600,8 +600,8 @@
            <schema_name/>
            </partitioning>
 <join_type>INNER</join_type>
-<step1>sort_dim_evento</step1>
-<step2>sort_evento</step2>
+<step1>sort_evento_candidato</step1>
+<step2>sort_dim_evento</step2>
     <keys_1>
       <key>id_evento</key>
     </keys_1>
@@ -924,7 +924,7 @@
     </step>
 
   <step>
-    <name>sort_cidade2</name>
+    <name>sort_cidade_candidato 2</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -951,8 +951,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>845</xloc>
-      <yloc>546</yloc>
+      <xloc>854</xloc>
+      <yloc>547</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1026,7 +1026,7 @@
     </step>
 
   <step>
-    <name>sort_curso2</name>
+    <name>sort_curso_candidato 2</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1230,7 +1230,7 @@
     </step>
 
   <step>
-    <name>sort_evento</name>
+    <name>sort_evento_candidato</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1257,8 +1257,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>493</xloc>
-      <yloc>717</yloc>
+      <xloc>539</xloc>
+      <yloc>718</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

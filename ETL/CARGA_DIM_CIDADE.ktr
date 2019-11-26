@@ -146,13 +146,13 @@
            <schema_name/>
            </partitioning>
 <join_type>LEFT OUTER</join_type>
-<step1>sort_cidade</step1>
-<step2>sort_nome_municipio</step2>
+<step1>sort_nome_municipio</step1>
+<step2>sort_cidade</step2>
     <keys_1>
-      <key>cidade</key>
+      <key>nome_municipio</key>
     </keys_1>
     <keys_2>
-      <key>nome_municipio</key>
+      <key>cidade</key>
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -247,7 +247,7 @@
            <schema_name/>
            </partitioning>
     <connection>vestibular</connection>
-    <sql>SELECT id_cidade, nome_municipio FROM vestibular.cidade&#xa;WHERE nome_municipio IN &#x28;select cidade&#xa;from vestibular.candidato&#xa;where unidade_federativa &#x3d; &#x27;SC&#x27;&#xa;group by cidade&#xa;having count&#x28;cidade&#x29; &#x3e; 350&#x29;</sql>
+    <sql>SELECT id_cidade, nome_municipio FROM vestibular.cidade&#xa;WHERE id_unidade_federativa &#x3d; &#x27;SC&#x27;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -288,7 +288,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>&#x2f;home&#x2f;robertorvs&#x2f;github&#x2f;datamart-vestibular-ufsc&#x2f;ETL&#x2f;PIB dos Munic&#xed;pios - base de dados 2010-2016.xlsx</name>
+      <name>&#x2f;home&#x2f;robertorvs&#x2f;&#xc1;rea de Trabalho&#x2f;DW-TrabalhoFinal&#x2f;utils&#x2f;PIB dos Munic&#xed;pios - base de dados 2010-2016.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -416,8 +416,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>887</xloc>
-      <yloc>369</yloc>
+      <xloc>888</xloc>
+      <yloc>397</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -726,40 +726,6 @@
     </step>
 
   <step>
-    <name>sort_nome_municipio</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>nome_municipio</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>647</xloc>
-      <yloc>260</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>sort_cidade</name>
     <type>SortRows</type>
     <description/>
@@ -789,6 +755,40 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>778</xloc>
       <yloc>147</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>sort_nome_municipio</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>nome_municipio</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>647</xloc>
+      <yloc>260</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

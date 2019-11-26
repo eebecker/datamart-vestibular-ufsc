@@ -199,6 +199,75 @@
     </step>
 
   <step>
+    <name>faixa_etaria</name>
+    <type>NumberRange</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <inputField>idade</inputField>
+    <outputField>faixa_etaria</outputField>
+    <fallBackValue>unknown</fallBackValue>
+    <rules>
+      <rule>
+        <lower_bound>0.0</lower_bound>
+        <upper_bound>16.0</upper_bound>
+        <value>menores de 16</value>
+      </rule>
+      <rule>
+        <lower_bound>16.0</lower_bound>
+        <upper_bound>16.1</upper_bound>
+        <value>igual a 16</value>
+      </rule>
+      <rule>
+        <lower_bound>17.0</lower_bound>
+        <upper_bound>17.1</upper_bound>
+        <value>igual a 17</value>
+      </rule>
+      <rule>
+        <lower_bound>18.0</lower_bound>
+        <upper_bound>18.1</upper_bound>
+        <value>igual a 18</value>
+      </rule>
+      <rule>
+        <lower_bound>19.0</lower_bound>
+        <upper_bound>19.1</upper_bound>
+        <value>igual a 19</value>
+      </rule>
+      <rule>
+        <lower_bound>20.0</lower_bound>
+        <upper_bound>20.1</upper_bound>
+        <value>igual a 20</value>
+      </rule>
+      <rule>
+        <lower_bound>21.0</lower_bound>
+        <upper_bound>30.1</upper_bound>
+        <value>de 21 a 30</value>
+      </rule>
+      <rule>
+        <lower_bound>31.0</lower_bound>
+        <upper_bound>59.1</upper_bound>
+        <value>de 31 a 59</value>
+      </rule>
+      <rule>
+        <lower_bound>60.0</lower_bound>
+        <upper_bound>100.0</upper_bound>
+        <value>maior ou igual a 60</value>
+      </rule>
+    </rules>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>610</xloc>
+      <yloc>70</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>faixa_qnt_vestibulares</name>
     <type>NumberRange</type>
     <description/>
@@ -308,7 +377,7 @@
            <schema_name/>
            </partitioning>
     <connection>vestibular</connection>
-    <sql>SELECT c.data_nascimento, c.grade_socioeconomico, c.id_candidato, e.ano_evento&#xa;FROM vestibular.candidato c, vestibular.evento e&#xa;WHERE c.id_evento &#x3d; e.id_evento&#xa;AND c.cidade IN &#x28;select cidade&#xa;from vestibular.candidato&#xa;where unidade_federativa &#x3d; &#x27;SC&#x27;&#xa;group by cidade&#xa;having count&#x28;cidade&#x29; &#x3e; 350&#x29;</sql>
+    <sql>SELECT c.data_nascimento, c.grade_socioeconomico, c.id_candidato, e.ano_evento&#xa;FROM vestibular.candidato c, vestibular.evento e&#xa;WHERE c.id_evento &#x3d; e.id_evento&#xa;AND unidade_federativa &#x3d; &#x27;SC&#x27;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -317,7 +386,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>121</xloc>
-      <yloc>195</yloc>
+      <yloc>194</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -419,75 +488,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>736</xloc>
       <yloc>203</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>faixa_etaria</name>
-    <type>NumberRange</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <inputField>idade</inputField>
-    <outputField>faixa_etaria</outputField>
-    <fallBackValue>unknown</fallBackValue>
-    <rules>
-      <rule>
-        <lower_bound>0.0</lower_bound>
-        <upper_bound>16.0</upper_bound>
-        <value>menores de 16</value>
-      </rule>
-      <rule>
-        <lower_bound>16.0</lower_bound>
-        <upper_bound>16.1</upper_bound>
-        <value>igual a 16</value>
-      </rule>
-      <rule>
-        <lower_bound>17.0</lower_bound>
-        <upper_bound>17.1</upper_bound>
-        <value>igual a 17</value>
-      </rule>
-      <rule>
-        <lower_bound>18.0</lower_bound>
-        <upper_bound>18.1</upper_bound>
-        <value>igual a 18</value>
-      </rule>
-      <rule>
-        <lower_bound>19.0</lower_bound>
-        <upper_bound>19.1</upper_bound>
-        <value>igual a 19</value>
-      </rule>
-      <rule>
-        <lower_bound>20.0</lower_bound>
-        <upper_bound>20.1</upper_bound>
-        <value>igual a 20</value>
-      </rule>
-      <rule>
-        <lower_bound>21.0</lower_bound>
-        <upper_bound>30.1</upper_bound>
-        <value>de 21 a 30</value>
-      </rule>
-      <rule>
-        <lower_bound>31.0</lower_bound>
-        <upper_bound>59.1</upper_bound>
-        <value>de 31 a 59</value>
-      </rule>
-      <rule>
-        <lower_bound>60.0</lower_bound>
-        <upper_bound>100.0</upper_bound>
-        <value>maior ou igual a 60</value>
-      </rule>
-    </rules>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>610</xloc>
-      <yloc>70</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
