@@ -18,3 +18,7 @@ mysql -u root dw < dw-dump.sql
 ## Atenção
 As bases `vestibular` e `dw` já devem estar criadas no MySQL.
 O banco foi criado sem senha para o usuário `root`.
+
+## ETL
+
+Para a execução do ETL clique [aqui](https://github.com/rrvs/datamart-vestibular-ufsc/blob/master/ETL/README.md)

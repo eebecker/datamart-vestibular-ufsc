@@ -5,7 +5,7 @@ Pasta que contém as transformações utilizadas para popular as tabelas dimens�
 
 ## Passos para execução do ETL
 
-1 - Para executar as transformações é necessário abri-las no Kettle. Preferível que seja utilizado a versão [5.0](https://sourceforge.net/projects/pentaho/files/Data%20Integration/5.0.1-stable/pdi-ce-5.0.1.A-stable.zip/download);
+1 - Para executar as transformações é necessário abri-las no Kettle. Para a criação do ETL utilizamos a versão 5.0, portanto não garantimos o funcionamento em outras versões. Para baixar a versão utilizada clique [aqui](https://sourceforge.net/projects/pentaho/files/Data%20Integration/5.0.1-stable/pdi-ce-5.0.1.A-stable.zip/download).
 
 2 - Colocar a biblioteca `mysql-connector-java-5.1.48-bin.jar` presente na pasta `utils` desse repositório dentro da pasta `lib`  no ETL;
 
