@@ -1,7 +1,7 @@
 # datamart-vestibular-ufsc
 
 ## Descrição 
-Projeto criado para desenvolvimento do trabalho final da disciplina INE5643-07238 (20192) - Data Warehouse com o intuito de responder o tema : 
+Projeto criado para desenvolvimento do trabalho final da disciplina INE5643-07238 (20192) - Data Warehouse com o intuito de responder ao tema : 
 
 * Apoiar a análise quanto ao investimento na implantação de escola/cursinho no estado de SC. Qual cidade/região melhor de investir numa escola/cursinho.
 
