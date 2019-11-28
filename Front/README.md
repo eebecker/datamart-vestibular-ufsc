@@ -1,4 +1,4 @@
-# FRONT
+# Front
 
 ## Descrição 
 Pasta que contém os gráficos criados na ferramenta `Power BI`.

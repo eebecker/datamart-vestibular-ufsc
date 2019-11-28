@@ -21,8 +21,8 @@ O banco foi criado sem senha para o usuário `root`.
 
 ## ETL
 
-Para a execução do ETL clique [aqui](https://github.com/rrvs/datamart-vestibular-ufsc/tree/master/ETL)
+Para a execução do ETL clique [aqui](https://github.com/rrvs/datamart-vestibular-ufsc/tree/master/ETL).
 
 ## Front
 
-Para conferir os gráficos gerados clique [aqui](https://github.com/rrvs/datamart-vestibular-ufsc/tree/master/FRONT)
+Para conferir os gráficos gerados clique [aqui](https://github.com/rrvs/datamart-vestibular-ufsc/tree/master/Front).
