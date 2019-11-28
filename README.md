@@ -10,7 +10,7 @@ Projeto criado para desenvolvimento do trabalho final da disciplina INE5643-0723
 Nesse repositório está presente o dump da base `vestibular-dump.sql` referente às informaçẽos do vestibular da UFSC e o Dump `dw-dump.sql` do DW e os gráficos utilizados para análise.
 
 ## Realizando o Restore
-Para realizar o restore das bases basta você ter instalado o banco MySQL 5.7.28, descompactar os arquivos `vestibular-dump.zip` e `dw-dump.zip` presentes na pasta utils e rodar o os comandos:
+Para realizar o restore das bases basta você ter instalado o banco MySQL 5.7.28, descompactar os arquivos `vestibular-dump.zip` e `dw-dump.zip` presentes na pasta [Utils](https://github.com/rrvs/datamart-vestibular-ufsc/tree/master/Utils) e rodar o os comandos:
 ```shell
 mysql -u root vestibular < vestibular-dump.sql
 mysql -u root dw < dw-dump.sql
